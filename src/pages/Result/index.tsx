@@ -8,6 +8,7 @@ import axios, { GET_REPO } from 'services';
 import { useQuery } from 'react-query';
 import Loader from 'components/Loader';
 import { QUERY_KEY } from './constant';
+import toast from 'react-hot-toast';
 
 const Result = () => {
   const debounced = _.debounce(function (event) {
@@ -47,9 +48,10 @@ const Result = () => {
     [QUERY_KEY.GET_REPO_KEY, searchTerm, pageNo],
     getUsersFromAPI,
     {
+      keepPreviousData: true,
       enabled: !!searchTerm && searchTerm.length > 0,
       onSuccess: (res) => addUsersToState(res),
-      keepPreviousData: true
+      onError: () => toast.error("An error occured")
     }
   );
   const handleChange = (event) => {

@@ -43,7 +43,7 @@ const NavBar = (props: NavBarProps) => {
           >
             <SearchBox small onChange={onSearchChange} />
           </Box>
-          <Box></Box>
+          <Box w="5rem"></Box>
         </Flex>
       </Center>
     </Box>
